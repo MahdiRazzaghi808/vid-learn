@@ -1,0 +1,24 @@
+{
+  "name": "VidLearn",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types",
+    "clean-modules": "node -e \"require('fs').rmSync('node_modules', { recursive: true, force: true }); require('fs').rmSync('.turbo', { recursive: true, force: true })\" && pnpm -r exec node -e \"require('fs').rmSync('node_modules', { recursive: true, force: true }); require('fs').rmSync('.next', { recursive: true, force: true }); require('fs').rmSync('.turbo', { recursive: true, force: true })\""
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "turbo": "^2.5.5"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@swc/helpers": "0.5.5"
+  }
+}

@@ -1,0 +1,70 @@
+/* =======================
+   Kalameh Font
+======================= */
+
+@font-face {
+    font-family: "Kalameh";
+    src: url("../fonts/Kalameh/KalamehWebFaNum-Thin.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Kalameh";
+    src: url("../fonts/Kalameh/KalamehWebFaNum-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Kalameh";
+    src: url("../fonts/Kalameh/KalamehWebFaNum-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Kalameh";
+    src: url("../fonts/Kalameh/KalamehWebFaNum-Black.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* =======================
+   Vazirmatn Font
+======================= */
+
+@font-face {
+    font-family: "Vazirmatn";
+    src: url("../fonts/vazirmatn/Vazirmatn-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Vazirmatn";
+    src: url("../fonts/vazirmatn/Vazirmatn-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+.font-Kalameh {
+    font-family: "Kalameh";
+}
+
+* {
+    font-feature-settings: "ss05";
+    font-feature-settings: "ss01";
+    font-variant-numeric: traditional;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+}
