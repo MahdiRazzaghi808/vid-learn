@@ -1,5 +1,8 @@
 import CourseCard from '@/components/common/course-card';
+import SectionHeader from '@/components/common/section-header';
+import HeadText from '@/components/common/typography/head';
 import { Button } from '@repo/main/components/ui/button';
+import { BookOpen } from 'lucide-react';
 
 const DUMMY_COURSES = Array.from({ length: 9 }).map((_, i) => ({
   id: i + 1,
@@ -16,12 +19,12 @@ const DUMMY_COURSES = Array.from({ length: 9 }).map((_, i) => ({
 export default function LatestCourses() {
   return (
     <section className="space-y-8">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <h2 className="text-3xl font-bold text-foreground mb-2">جدیدترین دوره‌ها</h2>
-        </div>
-        <Button variant="outline" className="w-full sm:w-auto">مشاهده همه دوره‌ها</Button>
-      </div>
+      <SectionHeader
+        title="جدیدترین دوره‌ها"
+        buttonText="مشاهده همه"
+        href="/courses"
+      />
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {DUMMY_COURSES.map((course) => (

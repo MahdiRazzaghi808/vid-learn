@@ -20,7 +20,7 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-3xl"
       >
-        <HeadText as="h1" className="text-white text-4xl md:text-6xl font-bold mb-6">
+        <HeadText as="h1" className="text-white !text-4xl md:!text-5xl font-bold mb-6">
           ویدلرن، مسیر یادگیری بی‌نهایت
         </HeadText>
         <p className="text-zinc-200 text-lg mb-8">

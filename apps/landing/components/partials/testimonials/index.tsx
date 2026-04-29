@@ -11,6 +11,7 @@ import Avatar7 from "@/public/assets/avatar/avatar-7.png";
 import Avatar8 from "@/public/assets/avatar/avatar-8.png";
 import Avatar9 from "@/public/assets/avatar/avatar-9.png";
 import { motion } from "framer-motion";
+import SectionHeader from "@/components/common/section-header";
 
 const testimonialsData = [
   {
@@ -140,9 +141,9 @@ const Testimonials = () => {
   return (
     <div className="">
       <div className="flex flex-col items-center pb-16">
-        <div className="text-2xl lg:text-3xl pt-6 font-bold tracking-tighter ">
-          نظرات کاربران ما
-        </div>
+        <SectionHeader
+          title="نظرات کاربران"
+        />
       </div>
 
       <div className="overflow-hidden [mask-image:linear-gradient(to_top,transparent,black,transparent)] h-[750px] mb-12 md:mb-28 lg:mb-36">

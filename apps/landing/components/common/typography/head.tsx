@@ -16,7 +16,7 @@ const HeadText: React.FC<HeadTextProps> = ({
     return (
         <Component
             className={cn(
-                'font-Kalameh font-medium text-[36px] lg:text-[48px]',
+                'font-Kalameh font-bold text-2xl lg:text-3xl',
                 className
             )}
             {...props}
