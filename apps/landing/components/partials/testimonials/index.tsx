@@ -1,48 +1,177 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Quote } from 'lucide-react';
+import Image from "next/image";
+import Avatar1 from "@/public/assets/avatar/avatar-1.png";
+import Avatar2 from "@/public/assets/avatar/avatar-2.png";
+import Avatar3 from "@/public/assets/avatar/avatar-3.png";
+import Avatar4 from "@/public/assets/avatar/avatar-4.png";
+import Avatar5 from "@/public/assets/avatar/avatar-5.png";
+import Avatar6 from "@/public/assets/avatar/avatar-6.png";
+import Avatar7 from "@/public/assets/avatar/avatar-7.png";
+import Avatar8 from "@/public/assets/avatar/avatar-8.png";
+import Avatar9 from "@/public/assets/avatar/avatar-9.png";
+import { motion } from "framer-motion";
 
-const testimonials = [
-  { id: 1, name: 'علی رضایی', role: 'توسعه‌دهنده فرانت‌اند', text: 'دوره‌های ویدلرن بی‌نظیر هستند. من تونستم با این دوره‌ها تو یه شرکت خوب استخدام بشم.' },
-  { id: 2, name: 'سارا محمدی', role: 'طراح محصول', text: 'کیفیت ویدیوها و تسلط مدرسین بسیار بالاست. قطعا به بقیه هم پیشنهاد میکنم.' },
-  { id: 3, name: 'محمد کریمی', role: 'دانشجوی نرم‌افزار', text: 'پشتیبانی دوره‌ها عالیه و هر سوالی داشتم در سریع‌ترین زمان ممکن پاسخ داده شد.' },
+const testimonialsData = [
+  {
+    text: "این دوره‌ها باعث شد مهارت برنامه‌نویسی من خیلی سریع پیشرفت کنه.",
+    name: "سارا احمدی",
+    handle: "@sara_dev",
+    avatar: Avatar1,
+  },
+  {
+    text: "روش تدریس اساتید فوق‌العاده بود و مفاهیم کاملا ساده توضیح داده شد.",
+    name: "امیررضا حسینی",
+    handle: "@amirreza.learn",
+    avatar: Avatar2,
+  },
+  {
+    text: "با این آموزش‌ها تونستم پروژه واقعی بسازم و تجربه عملی پیدا کنم.",
+    name: "علی رضایی",
+    handle: "@ali_projects",
+    avatar: Avatar3,
+  },
+  {
+    text: "دوره‌ها و تمرین‌ها خیلی سازماندهی شده و جذاب بودن.",
+    name: "علیرضا کریمی",
+    handle: "@alireza_study",
+    avatar: Avatar4,
+  },
+  {
+    text: "پشتیبانی و پاسخ به سوالات باعث شد هیچ وقت گیج نشم.",
+    name: "یاسین موسوی",
+    handle: "@yasin_support",
+    avatar: Avatar5,
+  },
+  {
+    text: "این دوره‌ها به من اعتماد به نفس داد تا برنامه‌های خودم رو بسازم.",
+    name: "هلیا اکبری",
+    handle: "@helia_codes",
+    avatar: Avatar6,
+  },
+  {
+    text: "محتوا کاملا کاربردی بود و به راحتی تونستم توی پروژه‌های واقعی استفاده کنم.",
+    name: "جعفر موسوی",
+    handle: "@jafar_projects",
+    avatar: Avatar7,
+  },
+  {
+    text: "اساتید پاسخگو و صبور بودن و همیشه سوالات ما رو جواب می‌دادن.",
+    name: "نرگس نادری",
+    handle: "@narges_study",
+    avatar: Avatar8,
+  },
+  {
+    text: "با تمرین‌ها و پروژه‌ها، مفاهیم رو عمیقا یاد گرفتم.",
+    name: "امیر جعفری",
+    handle: "@amir_learn",
+    avatar: Avatar9,
+  },
+  {
+    text: "این آموزش‌ها باعث شد مسیر شغلی خودم رو سریع‌تر پیدا کنم.",
+    name: "فاطمه کاظمی",
+    handle: "@fati_career",
+    avatar: Avatar1,
+  },
+  {
+    text: "بهترین تجربه یادگیری آنلاین که داشتم.",
+    name: "کسری محمدی",
+    handle: "@kasra_online",
+    avatar: Avatar2,
+  },
+  {
+    text: "پروژه‌های عملی باعث شد بعد از دوره آماده کار واقعی باشم.",
+    name: "محمد حسین پور",
+    handle: "@mhp_projects",
+    avatar: Avatar3,
+  },
+  {
+    text: "این پلتفرم انگیزه من برای یادگیری رو چند برابر کرد.",
+    name: "مهدی احمدی",
+    handle: "@mehdi_motivation",
+    avatar: Avatar4,
+  },
+  {
+    text: "کلاس‌ها خیلی سازماندهی شده و مفاهیم با مثال‌های عملی توضیح داده شد.",
+    name: "سعید رضایی",
+    handle: "@saeid_examples",
+    avatar: Avatar5,
+  },
+  {
+    text: "اساتید با تجربه باعث شدند سریع‌تر درک عمیق پیدا کنم.",
+    name: "بهناز کریمی",
+    handle: "@behnaz_expert",
+    avatar: Avatar6,
+  },
+  {
+    text: "این آموزش‌ها به من کمک کرد مسیر تحصیلی و شغلی خودم رو مشخص کنم.",
+    name: "نیما یوسفی",
+    handle: "@nima_path",
+    avatar: Avatar7,
+  },
+  {
+    text: "تمرین‌ها و چالش‌ها باعث شد مفاهیم رو بهتر یاد بگیرم.",
+    name: "الهام موسوی",
+    handle: "@elham_challenges",
+    avatar: Avatar8,
+  },
+  {
+    text: "بعد از این دوره‌ها تونستم وارد بازار کار بشم و پروژه واقعی انجام بدم.",
+    name: "امیر علیزاده",
+    handle: "@amir_work",
+    avatar: Avatar9,
+  },
+  {
+    text: "یادگیری با این دوره‌ها واقعا لذت‌بخش و انگیزشی بود.",
+    name: "نرگس احمدی",
+    handle: "@narges_fun",
+    avatar: Avatar1,
+  },
+  {
+    text: "پشتیبانی قوی و آموزش باکیفیت باعث شد هیچ وقت انگیزه‌ام کم نشه.",
+    name: "کامران حسینی",
+    handle: "@kamran_support",
+    avatar: Avatar2,
+  },
 ];
 
-export default function Testimonials() {
+
+const Testimonials = () => {
   return (
-    <section className="space-y-12 py-8">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-foreground mb-2">نظرات دانشجویان</h2>
-        <p className="text-muted-foreground">ببینید دیگران درباره ویدلرن چه می‌گویند</p>
+    <div className="">
+      <div className="flex flex-col items-center pb-16">
+        <div className="text-2xl lg:text-3xl pt-6 font-bold tracking-tighter ">
+          نظرات کاربران ما
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {testimonials.map((item, index) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="bg-card p-8 rounded-3xl border border-border relative shadow-sm"
-          >
-            <Quote className="absolute top-6 right-6 w-10 h-10 text-primary/10 rotate-180" />
-            <p className="text-foreground leading-relaxed mb-6 relative z-10">
-              «{item.text}»
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-zinc-200 rounded-full overflow-hidden">
-                <img src={`https://i.pravatar.cc/150?u=${item.id}`} alt={item.name} className="w-full h-full object-cover" />
+      <div className="overflow-hidden [mask-image:linear-gradient(to_top,transparent,black,transparent)] h-[750px] mb-12 md:mb-28 lg:mb-36">
+        <motion.div
+          animate={{ y: ["0%", "-50%"] }}
+          transition={{
+            duration: 20,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        >
+          <div className="flex items-center justify-center overflow-x-hidden pb-4 gap-4 flex-wrap">
+            {testimonialsData.map((item, index) => (
+              <div key={index} className="shadow-xl w-[310px] rounded-2xl p-8 my-4 bg-card">
+                <div className="font-medium pb-4">{item.text}</div>
+                <div className="flex items-center gap-3">
+                  <Image src={item.avatar} alt="Avatar" className="h-12 w-12" />
+                  <div>
+                    <div className="font-semibold">{item.name}</div>
+                    <div dir="ltr">{item.handle}</div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-foreground">{item.name}</h4>
-                <p className="text-xs text-muted-foreground">{item.role}</p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default Testimonials;
