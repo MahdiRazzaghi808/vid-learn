@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Hero />
-      <div className="container mx-auto px-4 space-y-24 py-12">
+      <div className="container mx-auto  space-y-24 py-12">
         <StatsCounter />
         <MainSlider />
         <LatestCourses />

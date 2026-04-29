@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+        style={{ backgroundImage: `url(/assets/hero.jpg)` }} 
       />
       <div className="absolute inset-0 bg-black/60 z-10" />
 

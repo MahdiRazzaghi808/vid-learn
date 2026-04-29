@@ -2,11 +2,17 @@
 
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@repo/main/components/ui/accordion";
 import { Button } from "@repo/main/components/ui/button";
 import {
   Drawer,
@@ -14,16 +20,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@repo/main/components/ui/drawer";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@repo/main/components/ui/accordion";
 
-import { cn } from "@repo/main/utils/cn";
 import { useCurrentUser } from "@/utils/current-user";
 import { mergePhone } from "@/utils/phone";
+import { cn } from "@repo/main/utils/cn";
 
 import { UserPopover } from "./user-popover";
 import { UserAvatar } from "./user-popover/user-avatar";
@@ -42,17 +42,24 @@ const Header = () => {
   const { data: user } = useCurrentUser();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
 
   const isActiveItem = (href: string) => pathname === href;
-
   const userIdentifier = user ? mergePhone(user) : "";
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    const handleScroll = () => {
+      if (pathname === "/") {
+        setIsPastHero(window.scrollY >= window.innerHeight);
+      } else {
+        setIsPastHero(true);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     setIsOpen(false);
@@ -64,8 +71,8 @@ const Header = () => {
       animate={{ y: 0 }}
       dir="rtl"
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-background/60 backdrop-blur-md",
-        isScrolled && "shadow-sm border-b border-border/50"
+        "fixed top-0 left-0 right-0 z-40 transition-all duration-300 backdrop-blur-md",
+        isPastHero ? "bg-background/60 shadow-sm" : "bg-transparent"
       )}
     >
       <div className="mx-auto px-4 lg:px-14 py-4 flex items-center justify-between">
@@ -90,7 +97,9 @@ const Header = () => {
                     "cursor-pointer transition-colors relative group",
                     isActiveItem(item.href)
                       ? "text-primary font-medium"
-                      : "text-muted-foreground hover:text-primary"
+                      : isPastHero
+                      ? "text-muted-foreground hover:text-primary"
+                      : "text-background hover:text-primary"
                   )}
                 >
                   {item.label}
@@ -167,13 +176,8 @@ const Header = () => {
                               <UserAvatar user={user} size={48} />
 
                               <div className="flex flex-col">
-                                <span className="font-semibold text-sm">
-                                  حساب کاربری من
-                                </span>
-                                <span
-                                  className="text-xs text-muted-foreground"
-                                  dir="ltr"
-                                >
+                                <span className="font-semibold text-sm">حساب کاربری من</span>
+                                <span className="text-xs text-muted-foreground" dir="ltr">
                                   {userIdentifier}
                                 </span>
                               </div>
@@ -181,10 +185,7 @@ const Header = () => {
                           </AccordionTrigger>
 
                           <AccordionContent className="pt-2 px-1 space-y-1">
-                            <UserMenu
-                              phone={userIdentifier}
-                              onClose={() => setIsOpen(false)}
-                            />
+                            <UserMenu phone={userIdentifier} onClose={() => setIsOpen(false)} />
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
