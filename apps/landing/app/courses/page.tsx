@@ -23,7 +23,7 @@ const MOCK_COURSES = Array.from({ length: 50 }).map((_, i) => {
         duration: "۲۰ ساعت",
         rating: 4.5 + (i % 5) * 0.1,
         image: `/assets/cards/1.png`,
-        category: CATEGORY_MOCKS[i % CATEGORY_MOCKS.length], // اضافه شدن دسته‌بندی برای تست فیلتر
+        category: CATEGORY_MOCKS[i % CATEGORY_MOCKS.length], 
     };
 });
 

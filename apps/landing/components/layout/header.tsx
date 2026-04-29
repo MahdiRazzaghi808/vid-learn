@@ -88,8 +88,8 @@ const Header = () => {
             <Image
               src="/assets/full-logo.png"
               alt="logo"
-              width={100}
-              height={100}
+              width={80}
+              height={80}
             />
           </Link>
 
