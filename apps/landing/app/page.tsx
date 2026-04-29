@@ -1,10 +1,10 @@
-import Hero from "@/components/partials/hero";
-import StatsCounter from "@/components/partials/stats-counter";
-import MainSlider from "@/components/partials/main-slider";
-import LatestCourses from "@/components/partials/latest-courses";
-import SuggestedCoursesSlider from "@/components/partials/suggested-courses-slider";
-import LatestArticles from "@/components/partials/latest-articles";
-import Testimonials from "@/components/partials/testimonials";
+import Hero from "@/components/partials/main/hero";
+import StatsCounter from "@/components/partials/main/stats-counter";
+import MainSlider from "@/components/partials/main/main-slider";
+import LatestCourses from "@/components/partials/main/latest-courses";
+import SuggestedCoursesSlider from "@/components/partials/main/suggested-courses-slider";
+import LatestArticles from "@/components/partials/main/latest-articles";
+import Testimonials from "@/components/partials/main/testimonials";
 import Footer from "@/components/layout/footer";
 
 export default function Home() {

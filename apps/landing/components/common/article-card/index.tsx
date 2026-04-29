@@ -1,9 +1,10 @@
 "use client"
-import { Calendar, User, Star } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+
+import { Calendar, User, Star } from "lucide-react";
+import Link from "next/link";
 
 interface ArticleCardProps {
-  id: number;  // اضافه کردم برای لینک
+  id: number;
   title: string;
   excerpt: string;
   date: string;
@@ -11,52 +12,61 @@ interface ArticleCardProps {
   image: string;
 }
 
-export default function ArticleCard({ id, title, excerpt, date, author, image }: ArticleCardProps) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push(`/articles/${id}`);
-  };
-
+export default function ArticleCard({
+  id,
+  title,
+  excerpt,
+  date,
+  author,
+  image,
+}: ArticleCardProps) {
   return (
-    <article
-      onClick={handleClick}
-      tabIndex={0}
-      role="link"
-      className="relative cursor-pointer flex flex-col bg-card rounded-2xl overflow-hidden border border-border shadow-sm
-        hover:shadow-md  transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary"
+    <Link
+      href={`/articles/${id}`}
+      className="group flex flex-col h-full bg-card rounded-2xl overflow-hidden border border-border shadow-md hover:shadow-lg hover:border-primary/40 transition-all duration-300"
     >
-      <div
-        className="absolute top-4 right-4 z-10 bg-blue-100 rounded-full p-1
-          flex items-center justify-center
-          opacity-70 hover:opacity-100
-          transition-all duration-300 transform hover:scale-125 hover:rotate-12"
-      >
-        <Star className="w-5 h-5 text-primary" />
-      </div>
-
-      <div className="aspect-[16/10] overflow-hidden">
+      {/* Image */}
+      <div className="relative aspect-video overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           loading="lazy"
         />
+
+        {/* Featured badge */}
+        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-zinc-800 flex items-center gap-1">
+          <Star className="w-4 h-4 text-yellow-500" />
+        </div>
       </div>
-      <div className="p-5 flex flex-col flex-1">
-        <h3 className="font-bold text-xl mb-2 text-foreground line-clamp-2">{title}</h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{excerpt}</p>
-        <div className="mt-auto flex items-center justify-between text-xs text-muted-foreground pt-4 border-t border-border">
-          <div className="flex items-center gap-1">
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5">
+        {/* Title */}
+        <h3 className="font-bold text-lg min-h-[56px] mb-3 text-foreground group-hover:text-primary transition-colors">
+          {title.length > 60 ? `${title.slice(0, 57)}...` : title}
+        </h3>
+
+        {/* Excerpt */}
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+          {excerpt}
+        </p>
+
+        <div className="flex-1" />
+
+        {/* Footer */}
+        <div className="flex items-center justify-between border-t border-border pt-4 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
             <User className="w-4 h-4" />
             <span>{author}</span>
           </div>
-          <div className="flex items-center gap-1">
+
+          <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
             <span>{date}</span>
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

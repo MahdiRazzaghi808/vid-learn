@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { Button } from '@repo/main/components/ui/button';
-import HeadText from '../../common/typography/head';
+import HeadText from '../../../common/typography/head';
 
 export default function Hero() {
   return (

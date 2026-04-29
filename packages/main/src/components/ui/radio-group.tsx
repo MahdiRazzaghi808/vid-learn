@@ -44,7 +44,7 @@ function RadioGroup({
     <RadioGroupContext.Provider value={{ variant: variant ?? 'primary', size: size ?? 'md' }}>
       <RadioGroupPrimitive.Root
         data-slot="radio-group"
-        className={cn(radioGroupVariants({ variant, size }), className)}
+        className={cn( radioGroupVariants({ variant, size }), className)}
         dir="rtl"
         {...props}
       />
@@ -59,7 +59,7 @@ const radioItemVariants = cva(
     focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
     aria-invalid:border-destructive/60 aria-invalid:ring-destructive/10 dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/20
     [[data-invalid=true]_&]:border-destructive/60 [[data-invalid=true]_&]:ring-destructive/10  dark:[[data-invalid=true]_&]:border-destructive dark:[[data-invalid=true]_&]:ring-destructive/20
-    border-input text-primary data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground  
+    border-foreground/40 text-primary data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground  
   `,
   {
     variants: {

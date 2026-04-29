@@ -57,17 +57,14 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (pathname === "/") {
-        setIsPastHero(window.scrollY >= window.innerHeight);
-      } else {
-        setIsPastHero(true);
-      }
+      setIsPastHero(window.scrollY > 0);
     };
-
+  
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  }, []);
+  
 
   useEffect(() => {
     setIsOpen(false);
@@ -79,9 +76,9 @@ const Header = () => {
       animate={{ y: 0 }}
       dir="rtl"
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
-        isPastHero ? "bg-background/80 shadow-sm" : "bg-transparent",
-        theme === "dark" ? "dark:border-b dark:border-gray-500" : ""
+        "fixed top-0 left-0 right-0 z-40 transition-colors duration-300",
+        isPastHero ? `bg-background/80 shadow-sm  ${theme === "dark" ? "border-b border-gray-500" : ""}` : "bg-transparent",
+       
       )}
       
     >

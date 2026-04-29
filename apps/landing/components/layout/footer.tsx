@@ -37,24 +37,46 @@ export default function Footer() {
             <li><Link href="#" className="hover:text-primary transition-colors">بازاریابی دیجیتال</Link></li>
           </ul>
         </div>
-
         <div>
-          <h4 className="text-lg font-bold text-accent-foreground mb-6">ارتباط با ما</h4>
-          <ul className="space-y-4 text-sm">
-            <li className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-primary" />
-              <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-primary" />
-              <span>info@vidlearner.ir</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-primary shrink-0" />
-              <span className="leading-relaxed">تهران، خیابان ولیعصر، تقاطع میرداماد، پلاک ۱۲۳</span>
-            </li>
-          </ul>
-        </div>
+  <h4 className="text-lg font-bold text-accent-foreground mb-6">ارتباط با ما</h4>
+
+  <ul className="space-y-4 text-sm">
+    <li>
+      <a
+        href="tel:02112345678"
+        className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
+      >
+        <Phone className="w-5 h-5 text-primary" />
+        <span dir="ltr">021-12345678</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="mailto:info@vidlearner.ir"
+        className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
+      >
+        <Mail className="w-5 h-5 text-primary" />
+        <span>info@vidlearner.ir</span>
+      </a>
+    </li>
+
+    <li>
+    <a
+        href="https://nshn.ir/?q=تهران خیابان ولیعصر تقاطع میرداماد"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-start gap-3 text-muted-foreground hover:text-primary transition-colors"
+      >
+        <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+        <span className="leading-relaxed">
+          تهران، خیابان ولیعصر، تقاطع میرداماد، پلاک ۱۲۳
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+
       </div>
 
       <div className=" mt-12 pt-8 border-t border-gray-400 text-center text-sm text-gray-500">
