@@ -100,7 +100,7 @@ export const CourseSidebar = () => {
     };
 
     return (
-        <div className="bg-accent rounded-xl py-0 lg:p-6 sticky top-24 space-y-8">
+        <div className="bg-accent rounded-xl py-0 lg:p-6 space-y-8">
             <div>
                 <div className="hidden lg:flex items-center justify-between mb-6">
                     <h3 className="font-bold text-lg">فیلترها</h3>

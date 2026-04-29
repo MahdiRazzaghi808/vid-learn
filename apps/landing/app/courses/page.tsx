@@ -77,7 +77,7 @@ export default function CoursesPage({
     return (
         <div className="container mx-auto px-4 py-8 lg:py-12 mt-20" dir="rtl">
             <div className="flex flex-col lg:flex-row gap-8">
-                <aside className="hidden lg:flex w-full lg:w-4/12 xl:w-3/12 flex-shrink-0">
+                <aside className="hidden  w-full lg:w-4/12 xl:w-3/12  lg:inline">
                     <CourseSidebar />
                 </aside>
 

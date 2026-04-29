@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Header from '../components/layout/header';
 import "./globals.css";
 import ProviderLayout from '../components/providers';
+import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
   title: "ویدلرن",
@@ -21,7 +22,7 @@ export default function RootLayout({
         <ProviderLayout>
           <Header />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </ProviderLayout>
       </body>
     </html>

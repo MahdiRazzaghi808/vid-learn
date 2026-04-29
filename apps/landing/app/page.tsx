@@ -1,11 +1,10 @@
 import Hero from "@/components/partials/main/hero";
-import StatsCounter from "@/components/partials/main/stats-counter";
-import MainSlider from "@/components/partials/main/main-slider";
-import LatestCourses from "@/components/partials/main/latest-courses";
-import SuggestedCoursesSlider from "@/components/partials/main/suggested-courses-slider";
 import LatestArticles from "@/components/partials/main/latest-articles";
+import LatestCourses from "@/components/partials/main/latest-courses";
+import MainSlider from "@/components/partials/main/main-slider";
+import StatsCounter from "@/components/partials/main/stats-counter";
+import SuggestedCoursesSlider from "@/components/partials/main/suggested-courses-slider";
 import Testimonials from "@/components/partials/main/testimonials";
-import Footer from "@/components/layout/footer";
 
 export default function Home() {
   return (
@@ -30,7 +29,6 @@ export default function Home() {
         <Testimonials />
       </div>
 
-      <Footer />
     </div>
   );
 }
