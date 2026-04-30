@@ -22,7 +22,7 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <Link
-      href={`/articles/${id}`}
+      href={`/blog/${id}`}
       className="group flex flex-col h-full bg-card rounded-2xl overflow-hidden border border-border shadow-md hover:shadow-lg hover:border-primary/40 transition-all duration-300"
     >
       {/* Image */}

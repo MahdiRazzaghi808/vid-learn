@@ -3,8 +3,14 @@
 import { Input } from "@repo/main/components/ui/input";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
+import { Search } from "lucide-react";
 
-export const CourseSearch = () => {
+interface SearchInputProps {
+    placeholder?: string;
+    className?: string;
+}
+
+export const SearchInput = ({ placeholder = "جستجو...", className }: SearchInputProps) => {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -35,12 +41,13 @@ export const CourseSearch = () => {
     }, [query, pathname, router]);
 
     return (
-        <div className="w-full sm:w-72">
+        <div className={`relative w-full ${className}`}>
+             <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input
-                placeholder="جستجوی دوره..."
+                placeholder={placeholder}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="bg-background"
+                className="pr-9 bg-accent"
             />
         </div>
     );

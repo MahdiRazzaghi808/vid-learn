@@ -1,16 +1,15 @@
-// src/components/courses/course-pagination.tsx
 'use client';
 
 import { Button } from "@repo/main/components/ui/button";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
-interface CoursePaginationProps {
+interface PaginationProps {
   currentPage: number;
   totalPages: number;
 }
 
-export const CoursePagination = ({ currentPage, totalPages }: CoursePaginationProps) => {
+export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -18,8 +17,10 @@ export const CoursePagination = ({ currentPage, totalPages }: CoursePaginationPr
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", page.toString());
-    router.push(pathname + "?" + params.toString());
+    router.push(pathname + "?" + params.toString(), { scroll: false });
   };
+
+  if (totalPages <= 1) return null;
 
   return (
     <div className="flex items-center justify-center gap-2 mt-8">

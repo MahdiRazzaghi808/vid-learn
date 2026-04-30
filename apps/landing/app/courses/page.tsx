@@ -1,10 +1,9 @@
-// src/app/courses/page.tsx
 import { CourseSidebar } from "@/components/partials/courses/course-sidebar/base";
 import { CourseSort } from "@/components/partials/courses/course-sort";
-import { CoursePagination } from "@/components/partials/courses/course-pagination";
-import { CourseSearch } from "@/components/partials/courses/course-search";
 import CourseCard from "@/components/common/course-card";
 import MobileFilter from "@/components/partials/courses/course-sidebar/mobile";
+import { Pagination } from "@/components/common/pagination";
+import { SearchInput } from "@/components/common/search-input";
 
 const CATEGORY_MOCKS = ["html-css", "react", "nextjs", "nodejs", "python", "php", "ml", "dl"];
 
@@ -83,8 +82,8 @@ export default function CoursesPage({
 
                 <main className="w-full lg:w-8/12 xl:w-9/12 flex flex-col gap-6">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-accent p-4 rounded-xl">
-                        <CourseSearch />
-                        <CourseSort />
+                    <SearchInput placeholder="جستجو در دوره ها..." className="sm:w-72" />
+                    <CourseSort />
                     </div>
 
                     <div className="lg:hidden">
@@ -104,7 +103,7 @@ export default function CoursesPage({
                     </div>
 
                     {totalPages > 1 && (
-                        <CoursePagination currentPage={page} totalPages={totalPages} />
+                        <Pagination currentPage={page} totalPages={totalPages} />
                     )}
                 </main>
             </div>
