@@ -1,7 +1,11 @@
-'use client'
+'use client';
 
-import Image from "next/image";
-import { NumberInfoResultDto } from "@repo/api/gateway";
+import Image from 'next/image';
+
+export type NumberInfoResultDto = {
+  title?: string;
+  photoPath?: string;
+}
 
 type Props = {
   user: NumberInfoResultDto;
@@ -9,7 +13,7 @@ type Props = {
 };
 
 export function UserAvatar({ user, size = 40 }: Props) {
-  const avatarLetter = (user?.title?.charAt(0) || "?").toUpperCase();
+  const avatarLetter = (user?.title?.charAt(0) || '?').toUpperCase();
 
   if (user?.photoPath) {
     return (
@@ -19,7 +23,7 @@ export function UserAvatar({ user, size = 40 }: Props) {
       >
         <Image
           src={user.photoPath}
-          alt={user.title || "avatar"}
+          alt={user.title || 'avatar'}
           width={size}
           height={size}
           className="object-cover w-full h-full"

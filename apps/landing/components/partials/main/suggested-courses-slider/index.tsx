@@ -4,17 +4,20 @@ import { useRef } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import CourseCard from '@/components/common/course-card';
 
-const DUMMY_COURSES = Array.from({ length: 9 }).map((_, i) => ({
-  id: i + 1,
-  title: `دوره جامع آموزش ${['ری‌اکت', 'نکست‌جی‌اس', 'طراحی UI', 'پایتون'][i % 4]} از صفر تا صد`,
-  instructor: 'استاد نمونه',
-  price: i % 2 === 0 ? 'رایگان' : '۱,۲۰۰,۰۰۰ تومان',
-  oldPrice: i % 2 === 0 ? null : '۲,۴۰۰,۰۰۰ تومان',
-  discount: i % 2 === 0 ? 0 : 50,
-  duration: '۴۵ ساعت',
-  rating: 4.8,
-  image: `/assets/cards/1.png`,
-}));
+const DUMMY_COURSES = Array.from({ length: 9 }).map((_, i) => {
+  const isFree = i % 2 === 0;
+  return {
+    id: i + 1,
+    title: `دوره جامع آموزش ${['ری‌اکت', 'نکست‌جی‌اس', 'طراحی UI', 'پایتون'][i % 4]} از صفر تا صد`,
+    instructor: 'استاد نمونه',
+    price: isFree ? 0 : 1200000,
+    oldPrice: isFree ? null : 2400000,
+    discount: isFree ? 0 : 50,
+    duration: '۴۵ ساعت',
+    rating: 4.8,
+    image: `/assets/cards/1.png`,
+  };
+});
 
 export default function SuggestedCoursesSlider() {
   const scrollRef = useRef<HTMLDivElement>(null);

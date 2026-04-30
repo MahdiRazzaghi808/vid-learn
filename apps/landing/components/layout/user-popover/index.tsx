@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { mergePhone } from "@/utils/phone";
-import { NumberInfoResultDto } from "@repo/api/gateway";
 import { Popover, PopoverContent, PopoverTrigger } from "@repo/main/components/ui/popover";
-import { UserAvatar } from "./user-avatar";
+import { NumberInfoResultDto, UserAvatar } from "./user-avatar";
 import { UserMenu } from "./user-menu";
 
 type Props = {

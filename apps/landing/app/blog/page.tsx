@@ -15,13 +15,15 @@ const MOCK_ARTICLES = Array.from({ length: 45 }).map((_, i) => ({
 
 const ITEMS_PER_PAGE = 9;
 
-export default function BlogsPage({
+export default async function BlogsPage({
   searchParams,
 }: {
-  searchParams: { q?: string; page?: string };
+  searchParams: Promise<{ q?: string; page?: string }>;
 }) {
-  const query = searchParams.q || "";
-  const currentPage = Number(searchParams.page) || 1;
+  const params = await searchParams;
+
+  const query = params.q || "";
+  const currentPage = Number(params.page) || 1;
 
   const filteredArticles = MOCK_ARTICLES.filter(
     (article) =>
@@ -41,7 +43,7 @@ export default function BlogsPage({
       <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
         <HeadText as="h1">مقالات</HeadText>
         <SearchInput placeholder="جستجو در مقالات..." className="sm:w-72" />
-        </div>
+      </div>
 
       {paginatedArticles.length > 0 ? (
         <>
@@ -52,7 +54,7 @@ export default function BlogsPage({
           </div>
 
           <Pagination currentPage={currentPage} totalPages={totalPages} />
-          </>
+        </>
       ) : (
         <div className="text-center py-20 bg-card rounded-3xl">
           <p className="text-muted-foreground text-lg">

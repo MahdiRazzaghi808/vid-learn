@@ -36,7 +36,7 @@ const Header = () => {
     { label: "دوره‌ها", href: "/courses" },
     { label: "مقالات", href: "/blog" },
     { label: "سوالات متداول", href: "/faq" },
-    { label: "تماس با ما", href: "/contact" },
+    { label: "درباره ما", href: "/about-us" },
   ];
 
   const pathname = usePathname();
@@ -59,12 +59,12 @@ const Header = () => {
     const handleScroll = () => {
       setIsPastHero(window.scrollY > 0);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
 
   useEffect(() => {
     setIsOpen(false);
@@ -78,9 +78,9 @@ const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-40 transition-colors duration-300",
         isPastHero ? `bg-background/80 shadow-sm  ${theme === "dark" ? "border-b border-gray-500" : ""}` : "bg-transparent",
-       
+
       )}
-      
+
     >
       <div className="mx-auto px-4 lg:px-14 py-4 flex items-center justify-between transparent">
         <div className="flex items-center gap-10">
@@ -151,7 +151,10 @@ const Header = () => {
 
           <div className="hidden lg:flex items-center">
             {!user ? (
-              <UserPopover user={user} />
+              <UserPopover user={{
+                photoPath:"",
+                title:"مهدی"
+              }} />
             ) : (
               <Button>
                 ورود / ثبت‌نام
@@ -160,99 +163,84 @@ const Header = () => {
           </div>
 
           <div className="lg:hidden flex items-center">
-            <Drawer open={isOpen} onOpenChange={setIsOpen}>
+            <Drawer open={isOpen} onOpenChange={setIsOpen} >
               <DrawerTrigger asChild>
                 <Button
-                  className={cn(
-                    "rounded-2xl transition-all duration-300",
-                    "text-muted-foreground hover:text-primary hover:bg-primary/10"
-                  )}
+                  className="text-muted-foreground hover:bg-muted hover:text-foreground"
                   variant="ghost"
                   size="icon"
                   aria-label="باز کردن منو"
                 >
-                  <motion.div whileTap={{ scale: 0.8 }}>
-                    <Menu className="size-6" />
-                  </motion.div>
+                  <Menu className="size-6" />
                 </Button>
               </DrawerTrigger>
 
               <DrawerContent
-                className="px-6 pb-6 outline-none border-t-0 rounded-t-[2.5rem] bg-background/80 backdrop-blur-xl shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
+                className="px-6 pb-4 outline-none border-none"
                 onCloseAutoFocus={(e) => e.preventDefault()}
               >
-                <div className="mx-auto mt-2 h-1.5 w-12 rounded-full bg-muted-foreground/20 mb-6" />
                 <DrawerTitle className="sr-only">منوی ناوبری</DrawerTitle>
 
-                <div className="flex flex-col h-full overflow-y-auto">
-                  <nav className="flex flex-col space-y-2">
-                    {navItems.map((item, index) => (
-                      <motion.div
+                <div className="flex flex-col h-full overflow-y-auto mt-6">
+                  <nav className="flex flex-col space-y-1.5">
+                    {navItems.map((item) => (
+                      <Button
                         key={item.href}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05, duration: 0.3 }}
+                        asChild
+                        variant="ghost"
+                        className={cn(
+                          "w-full justify-start text-base",
+                          isActiveItem(item.href)
+                            ? "bg-primary/10 text-primary font-medium"
+                            : "hover:bg-muted text-muted-foreground hover:text-foreground"
+                        )}
+                        onClick={() => setIsOpen(false)}
                       >
-                        <Button
-                          asChild
-                          variant="ghost"
-                          className={cn(
-                            "w-full justify-start text-base rounded-xl h-12 transition-all",
-                            isActiveItem(item.href)
-                              ? "bg-primary/15 text-primary font-bold shadow-sm"
-                              : "hover:bg-primary/5 text-foreground/80 hover:text-primary font-medium"
-                          )}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <Link href={item.href}>{item.label}</Link>
-                        </Button>
-                      </motion.div>
+                        <Link href={item.href}>{item.label}</Link>
+                      </Button>
                     ))}
                   </nav>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="h-px bg-gradient-to-r from-transparent via-border to-transparent my-6"
-                  />
+                  <div className="h-px bg-border my-4" />
 
-                  <motion.div
-                    className="flex flex-col"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                  >
+                  <div className="flex flex-col">
                     {user ? (
                       <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="user-menu" className="border-none bg-muted/30 rounded-2xl p-1">
-                          <AccordionTrigger className="hover:no-underline px-4 py-3 rounded-xl hover:bg-background shadow-sm transition-all">
-                            <div className="flex items-center gap-4 text-right">
-                              <div className="ring-2 ring-primary/20 rounded-full p-0.5">
-                                <UserAvatar user={user} size={44} />
-                              </div>
+                        <AccordionItem value="user-menu" className="border-none">
+                          <AccordionTrigger className="hover:no-underline px-3 rounded-xl hover:bg-muted/50">
+                            <div className="flex items-center gap-3 text-right">
+                              <UserAvatar user={user} size={48} />
+
                               <div className="flex flex-col">
-                                <span className="font-bold text-sm text-foreground">حساب کاربری من</span>
-                                <span className="text-xs text-muted-foreground mt-0.5 font-medium" dir="ltr">
+                                <span className="font-semibold text-sm">
+                                  حساب کاربری من
+                                </span>
+                                <span
+                                  className="text-xs text-muted-foreground"
+                                  dir="ltr"
+                                >
                                   {userIdentifier}
                                 </span>
                               </div>
                             </div>
                           </AccordionTrigger>
 
-                          <AccordionContent className="pt-3 px-2 space-y-1">
-                            <UserMenu phone={userIdentifier} onClose={() => setIsOpen(false)} />
+                          <AccordionContent className="pt-2 px-1 space-y-1">
+                            <UserMenu
+                              phone={userIdentifier}
+                              onClose={() => setIsOpen(false)}
+                            />
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
                     ) : (
                       <div className="w-full pt-2">
-                        <Button className="w-full rounded-xl h-12 text-base font-bold bg-gradient-to-l from-primary to-primary/80 hover:shadow-lg hover:shadow-primary/25 transition-all">
+                        <Button>
                           ورود / ثبت‌نام
                         </Button>
                       </div>
                     )}
-                  </motion.div>
+                  </div>
                 </div>
               </DrawerContent>
             </Drawer>

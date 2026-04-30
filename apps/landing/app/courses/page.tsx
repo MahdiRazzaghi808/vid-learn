@@ -22,25 +22,27 @@ const MOCK_COURSES = Array.from({ length: 50 }).map((_, i) => {
         duration: "۲۰ ساعت",
         rating: 4.5 + (i % 5) * 0.1,
         image: `/assets/cards/1.png`,
-        category: CATEGORY_MOCKS[i % CATEGORY_MOCKS.length], 
+        category: CATEGORY_MOCKS[i % CATEGORY_MOCKS.length],
     };
 });
 
 const ITEMS_PER_PAGE = 9;
 
-export default function CoursesPage({
+export default async function CoursesPage({
     searchParams,
 }: {
-    searchParams: { [key: string]: string | string[] | undefined };
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    const query = typeof searchParams.q === "string" ? searchParams.q : "";
-    const sort = typeof searchParams.sort === "string" ? searchParams.sort : "newest";
-    const priceFilter = typeof searchParams.price === "string" ? searchParams.price : "all";
-    const page = typeof searchParams.page === "string" ? parseInt(searchParams.page) : 1;
+    const params = await searchParams;
 
-    const minPrice = typeof searchParams.minPrice === "string" ? parseInt(searchParams.minPrice) : null;
-    const maxPrice = typeof searchParams.maxPrice === "string" ? parseInt(searchParams.maxPrice) : null;
-    const categories = typeof searchParams.categories === "string" ? searchParams.categories.split(",") : [];
+    const query = typeof params.q === "string" ? params.q : "";
+    const sort = typeof params.sort === "string" ? params.sort : "newest";
+    const priceFilter = typeof params.price === "string" ? params.price : "all";
+    const page = typeof params.page === "string" ? parseInt(params.page) : 1;
+
+    const minPrice = typeof params.minPrice === "string" ? parseInt(params.minPrice) : null;
+    const maxPrice = typeof params.maxPrice === "string" ? parseInt(params.maxPrice) : null;
+    const categories = typeof params.categories === "string" ? params.categories.split(",") : [];
 
     // Filter
     let filteredCourses = MOCK_COURSES.filter((course) => {
@@ -82,8 +84,8 @@ export default function CoursesPage({
 
                 <main className="w-full lg:w-8/12 xl:w-9/12 flex flex-col gap-6">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-accent p-4 rounded-xl">
-                    <SearchInput placeholder="جستجو در دوره ها..." className="sm:w-72" />
-                    <CourseSort />
+                        <SearchInput placeholder="جستجو در دوره ها..." className="sm:w-72" />
+                        <CourseSort />
                     </div>
 
                     <div className="lg:hidden">

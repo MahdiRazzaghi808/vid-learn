@@ -92,7 +92,13 @@ const COURSE_MOCK_DATA = {
     ],
   };
 
-export default function SingleCoursePage({ params }: { params: { slug: string } }) {
+export default async function SingleCoursePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  
   return (
     <div className="container mx-auto px-4 py-24">
 
