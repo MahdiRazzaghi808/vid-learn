@@ -1,9 +1,7 @@
 import '@repo/main/styles.css';
 import type { Metadata } from "next";
-import Header from '../components/layout/header';
-import "./globals.css";
 import ProviderLayout from '../components/providers';
-import Footer from '@/components/layout/footer';
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "ویدلرن",
@@ -20,9 +18,7 @@ export default function RootLayout({
     <html lang="fa" dir="rtl">
       <body className="bg-background text-foreground">
         <ProviderLayout>
-          <Header />
           {children}
-          <Footer />
         </ProviderLayout>
       </body>
     </html>

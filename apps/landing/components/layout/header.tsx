@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun } from "lucide-react";
@@ -65,7 +65,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -78,9 +77,7 @@ const Header = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-40 transition-colors duration-300",
         isPastHero ? `bg-background/80 shadow-sm  ${theme === "dark" ? "border-b border-gray-500" : ""}` : "bg-transparent",
-
       )}
-
     >
       <div className="mx-auto px-4 lg:px-14 py-4 flex items-center justify-between transparent">
         <div className="flex items-center gap-10">
@@ -152,12 +149,12 @@ const Header = () => {
           <div className="hidden lg:flex items-center">
             {!user ? (
               <UserPopover user={{
-                photoPath:"",
-                title:"مهدی"
+                photoPath: "",
+                title: "مهدی"
               }} />
             ) : (
-              <Button>
-                ورود / ثبت‌نام
+              <Button asChild>
+                <Link href="/login">ورود / ثبت‌نام</Link>
               </Button>
             )}
           </div>
@@ -204,7 +201,7 @@ const Header = () => {
                   <div className="h-px bg-border my-4" />
 
                   <div className="flex flex-col">
-                    {user ? (
+                    {!user ? (
                       <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="user-menu" className="border-none">
                           <AccordionTrigger className="hover:no-underline px-3 rounded-xl hover:bg-muted/50">
@@ -235,8 +232,8 @@ const Header = () => {
                       </Accordion>
                     ) : (
                       <div className="w-full pt-2">
-                        <Button>
-                          ورود / ثبت‌نام
+                        <Button asChild className="w-full">
+                          <Link href="/login">ورود / ثبت‌نام</Link>
                         </Button>
                       </div>
                     )}
